@@ -18,6 +18,7 @@ const futbolistasRoutes = require('./routes/futbolistas');
 const politicosRouter = require('./routes/politicos');
 const medicosRoutes = require('./routes/medicos');
 const despachantesRouter = require('./routes/despachantes'); // <-- NUEVA LÍNEA
+const staRitaRouter = require('./routes/sta_rita');
 
 // Middleware para procesar el cuerpo de las solicitudes y habilitar CORS
 app.use(express.json());
@@ -38,7 +39,7 @@ app.use('/api/futbolistas', futbolistasRoutes);
 app.use('/api/politicos', politicosRouter);
 app.use('/api/medicos', medicosRoutes);
 app.use('/api/despachantes', despachantesRouter); // <-- NUEVA LÍNEA
-
+app.use('/api/contri_sta_rita', staRitaRouter);
 // Ruta principal para verificar que el servidor está en funcionamiento
 app.get('/', (req, res) => {
     res.send('Servidor de SisBase en funcionamiento.');

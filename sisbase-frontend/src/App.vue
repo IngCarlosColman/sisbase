@@ -120,7 +120,16 @@
             <v-icon>mdi-ferry</v-icon>
           </template>
           <v-list-item-title>Despachantes Aduaneros</v-list-item-title>
-        </v-list-item> </v-list>
+        </v-list-item>
+        
+        <v-list-item to="/contri-sta-rita" link>
+          <template v-slot:prepend>
+            <v-icon>mdi-storefront</v-icon>
+          </template>
+          <v-list-item-title>Comerciantes Sta. Rita</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
     </v-navigation-drawer>
 
     <v-main>

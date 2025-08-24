@@ -14,6 +14,7 @@ import FutbolistasList from '@/components/FutbolistasList.vue';
 import PoliticosList from '@/components/PoliticosList.vue';
 import MedicosList from '@/components/MedicosList.vue';
 import DespachantesList from '@/components/DespachantesList.vue'; // <-- NUEVA LÍNEA
+import StaRitaList from '@/components/Sta_RitaList.vue'; // <-- NUEVA LÍNEA PARA EL COMPONENTE
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -102,6 +103,11 @@ const router = createRouter({
       name: 'despachantes',
       component: DespachantesList,
     }, // <-- NUEVA RUTA
+    {
+      path: '/contri-sta-rita', // <-- Nueva URL para la vista
+      name: 'contri-sta-rita', // <-- Nuevo nombre de la ruta
+      component: StaRitaList, // <-- El componente que importaste
+    }, // <-- NUEVA RUTA COMPLETA
   ],
 });
 

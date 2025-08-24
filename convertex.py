@@ -16,7 +16,10 @@ def generar_create_table(df, nombre_tabla):
     definiciones = []
     for col in df.columns:
         tipo = inferir_tipo(df[col])
-        definiciones.append(f'"{col}" {tipo}')
+        # Aseguramos que los nombres de las columnas en la instrucción SQL
+        # sean seguros (sin caracteres especiales que rompan la sintaxis)
+        col_limpia = col.replace('.', '_').replace(' ', '_').replace('-', '_').lower()
+        definiciones.append(f'"{col_limpia}" {tipo}')
     sql = f'CREATE TABLE {nombre_tabla} (\n    ' + ',\n    '.join(definiciones) + '\n);'
     return sql
 
@@ -32,14 +35,20 @@ def main():
         sys.exit(1)
 
     try:
+        # Lee el archivo Excel. Aunque .xlsx usa su propia codificación,
+        # es una buena práctica estar preparado.
         df = pd.read_excel(archivo_excel, engine='openpyxl')
     except Exception as e:
         print(f"⚠️ Error al leer el archivo Excel: {e}")
         sys.exit(1)
 
-    # Convertir a CSV
+    # Convertir a CSV con codificación UTF-8
     nombre_csv = os.path.splitext(archivo_excel)[0] + '.csv'
-    df.to_csv(nombre_csv, index=False, sep=',')
+    try:
+        df.to_csv(nombre_csv, index=False, sep=',', encoding='utf-8')
+    except Exception as e:
+        print(f"⚠️ Error al escribir el archivo CSV con UTF-8: {e}")
+        sys.exit(1)
 
     # Generar SQL
     nombre_tabla = os.path.splitext(os.path.basename(archivo_excel))[0].lower()
@@ -50,4 +59,4 @@ def main():
     print(sql)
 
 if __name__ == "__main__":
-    main()  
+    main()
