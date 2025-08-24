@@ -1,0 +1,20 @@
+# Dependencias de Node.js
+node_modules/
+# Archivos de logs
+npm-debug.log
+yarn-debug.log
+# Archivos de entorno
+.env
+# Archivos de caché y compilaciones
+dist/
+build/
+.cache/
+# Archivos específicos de sistemas operativos
+.DS_Store
+Thumbs.db
+db/
+backup.sql
+databases_bk_no_for_production
+docker-compose.yml
+backend/node_modules
+sisbase-frontend/node_modules
